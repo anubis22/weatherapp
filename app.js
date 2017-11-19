@@ -2,7 +2,7 @@ const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
 const express = require('express');
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 var app = express();
 const argv = yargs
   .options({
@@ -17,9 +17,10 @@ const argv = yargs
 .alias('help','h')
 .argv;
 
-app.use(express.static(__dirname + '/public'));
+hbs.registerPartials(__dirname + '/views/partials');
+app.set('view engine', 'hbs');
 app.get('/',function(req, res, next){
-  res.render('home.html')
+  res.render('home.hbs')
 });
 
 geocode.geocodeAddress(argv.address, function(errorMessage, results){
@@ -37,5 +38,5 @@ geocode.geocodeAddress(argv.address, function(errorMessage, results){
    }
 });
 app.listen(port,function(){
-  console.log(`app is running on ${port`})
+  console.log(`app is running on ${port}`)
 });
