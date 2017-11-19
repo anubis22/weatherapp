@@ -2,6 +2,7 @@ const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
 const express = require('express');
+const hbs = require('hbs');
 const port = process.env.PORT || 3000;
 var app = express();
 const argv = yargs
