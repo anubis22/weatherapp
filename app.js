@@ -1,6 +1,9 @@
 const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
 const weather = require('./weather/weather');
+const express = require('express');
+const port = process.env.PORT;
+var app = express();
 const argv = yargs
   .options({
     a: {
@@ -13,6 +16,11 @@ const argv = yargs
 .help()
 .alias('help','h')
 .argv;
+
+app.use(express.static(__dirname + '/public'));
+app.get('/',function(req, res, next){
+  res.render('home.html')
+});
 
 geocode.geocodeAddress(argv.address, function(errorMessage, results){
    if(errorMessage){
@@ -27,4 +35,7 @@ geocode.geocodeAddress(argv.address, function(errorMessage, results){
        }
      });
    }
+});
+app.listen(port,function(){
+  console.log(`app is running on ${port`})
 });
