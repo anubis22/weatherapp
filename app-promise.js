@@ -18,16 +18,6 @@ var app = express();
 // .help()
 // .alias('help','h')
 // .argv;
-var select = require('html-select');
-var tokenize = require('html-tokenize');
-var fs = require('fs');
-
-var s = select('#button', function (e) {
-    e.createReadStream().on('click', function () {
-      console.log('*** MATCH ***');
-    });
-});
-fs.createReadStream(__dirname + '/views/home.hbs').pipe(tokenize()).pipe(s);
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
