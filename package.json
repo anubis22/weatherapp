@@ -11,9 +11,14 @@
     "start": "node app.js -a cairo"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "express": "^4.16.2",
     "hbs": "^4.0.1",
     "heroku": "^0.2.0",
+    "html-select": "^2.3.24",
+    "html-tokenize": "^2.0.0",
+    "jquery": "^3.2.1",
+    "jsdom": "^11.5.1",
     "request": "^2.83.0",
     "yargs": "^10.0.3"
   },
